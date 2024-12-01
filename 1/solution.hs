@@ -11,17 +11,17 @@ split delims (x:xs)
   | otherwise     = addFirst (split delims xs) x
 
 
-to_tuple :: [a] -> (a, a)
-to_tuple (x:(y:ys)) = (x, y)
+toTuple :: [a] -> (a, a)
+toTuple (x:(y:ys)) = (x, y)
 
-from_tuple :: (a, a) -> [a]
-from_tuple (x, y) = [x, y]
+fromTuple :: (a, a) -> [a]
+fromTuple (x, y) = [x, y]
 
 splitInput :: String -> [(Integer, Integer)]
 splitInput text = map (\x -> to_tuple $ map read x) $ map (filter (/="")) $ map (split [' ']) $ split ['\n'] text
 
 solve1 :: [(Integer, Integer)] -> Integer
-solve1 x = sum $ map (\(x, y) -> abs (x - y)) $ uncurry zip $ to_tuple $ map sort $ from_tuple $ unzip x
+solve1 x = sum $ map (\(x, y) -> abs (x - y)) $ uncurry zip $ toTuple $ map sort $ fromTuple $ unzip x
 
 solve2 :: [(Integer, Integer)] -> Integer
 solve2 x = sum $ (\(x, y) -> map (\z -> z * (count z y)) x) $ unzip x
