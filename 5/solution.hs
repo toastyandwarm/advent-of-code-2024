@@ -30,9 +30,6 @@ split delims (x:xs)
 toTuple :: [a] -> (a, a)
 toTuple (x:(y:ys)) = (x, y)
 
-fromTuple :: (a, a) -> [a]
-fromTuple (x, y) = [x, y]
-
 splitInput :: String -> [(Integer, Integer)]
 splitInput text = map (\x -> toTuple $ map read x) $ map (filter (/="")) $ map (split ['|']) $ split ['\n'] text
 
