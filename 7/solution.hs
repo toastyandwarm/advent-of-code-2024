@@ -31,7 +31,7 @@ solve2 [] = 0
 solve2 ((_, []):xs) = solve2 xs
 solve2 ((a, (b:bs)):xs) = ((\x -> if x then 0 else a) $ null $ filter (==a) $ map (\fs -> (foldl' (flip ($)) b (zipWith flip fs bs))) (getOperators2 (length bs))) + solve2 xs
 
-getOperators2 :: (Num a, Ord a, Show a, Read a) => Int -> [[(a -> a -> a)]]
+getOperators2 :: (Num a, Show a, Read a) => Int -> [[(a -> a -> a)]]
 getOperators2 0 = [[]]
 getOperators2 x
   | x < 0     = [[]]
