@@ -42,9 +42,6 @@ getOperators2 x
 concat' :: (Show a, Read a) => a -> a -> a
 concat' x y = read ((show x) ++ (show y))
 
---solve2 :: [(Int, Int)] -> Int
---solve2 x = sum $ (\(x, y) -> map (\z -> z * (count z y)) x) $ unzip x
-
 main :: IO()
 main = do
        fileinp <- readFile "input.txt"
