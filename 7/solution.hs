@@ -17,9 +17,8 @@ splitInput text = map (\(x:xs) -> (x, xs)) $ map (map read) $ map (filter (/="")
 
 solve1 :: [(Int, [Int])] -> Int
 solve1 [] = 0
-solve1 ((a, (b:bs)):xs)
-  | bs == []  = solve1 xs
-  | otherwise = ((\x -> if x then 0 else a) $ null $ filter (==a) $ map (\fs -> (foldl' (flip ($)) b (zipWith flip fs bs))) (getOperators (length bs))) + solve1 xs
+solve1 ((_, []):xs) = solve1 xs
+solve1 ((a, (b:bs)):xs) = ((\x -> if x then 0 else a) $ null $ filter (==a) $ map (\fs -> (foldl' (flip ($)) b (zipWith flip fs bs))) (getOperators (length bs))) + solve1 xs
 
 getOperators :: (Num a, Show a) => Int -> [[(a -> a -> a)]]
 getOperators 0 = [[]]
@@ -29,11 +28,10 @@ getOperators x
 
 solve2 :: [(Int, [Int])] -> Int
 solve2 [] = 0
-solve2 ((a, (b:bs)):xs)
-  | bs == []  = solve2 xs
-  | otherwise = ((\x -> if x then 0 else a) $ null $ filter (==a) $ map (\fs -> (foldl' (flip ($)) b (zipWith flip fs bs))) (getOperators2 (length bs))) + solve2 xs
+solve2 ((_, []):xs) = solve2 xs
+solve2 ((a, (b:bs)):xs) = ((\x -> if x then 0 else a) $ null $ filter (==a) $ map (\fs -> (foldl' (flip ($)) b (zipWith flip fs bs))) (getOperators2 (length bs))) + solve2 xs
 
-getOperators2 :: (Num a, Show a, Read a) => Int -> [[(a -> a -> a)]]
+getOperators2 :: (Num a, Ord a, Show a, Read a) => Int -> [[(a -> a -> a)]]
 getOperators2 0 = [[]]
 getOperators2 x
   | x < 0     = [[]]
