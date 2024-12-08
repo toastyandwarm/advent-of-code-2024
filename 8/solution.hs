@@ -16,9 +16,6 @@ splitInput text = concat $ map (\(x, zs) -> map (\(y, z) -> ((x, y), z)) zs) $ m
 indexed :: [a] -> [(Int, a)]
 indexed xs = zip [0..((length xs)-1)] xs
 
-addCoords :: Num a => (a, a) -> (a, a) -> (a, a)
-addCoords (a, b) (c, d) = (a+c, b+d)
-
 checkBounds :: (Num a, Ord a) => (a, a) -> (a, a) -> Bool
 checkBounds (c, d) (a, b) = (0 <= a) && (0 <= b) && (a < c) && (b < d)
 
