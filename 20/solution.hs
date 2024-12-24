@@ -38,10 +38,10 @@ toSquare 'S' = Just Square {visited=False, distance=Nothing, start=True,  end=Fa
 toSquare 'E' = Just Square {visited=True,  distance=Just 0,  start=False, end=True}
 toSquare _ = Nothing
 
---partial!
 splitInput :: String -> [[Char]]
 splitInput = split "\n"
 
+--partial!
 buildArray :: [[Char]] -> (Array (Int, Int) Square)
 buildArray grid = listArray ((0, 0), ((length grid)-1, (length (grid!!0))-1)) . concat . map (map (fromJust . toSquare)) $ grid
 
